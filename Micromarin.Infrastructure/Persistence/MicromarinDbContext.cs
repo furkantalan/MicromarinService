@@ -11,7 +11,7 @@ public class MicromarinDbContext : DbContext
     }
 
 
-    public DbSet<Customer> Customers => Set<Customer>();
+    public DbSet<Order> Customers => Set<Order>();
     public DbSet<Order> Orders => Set<Order>();
     public DbSet<Product> Products => Set<Product>();
 

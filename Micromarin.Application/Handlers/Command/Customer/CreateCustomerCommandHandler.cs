@@ -25,7 +25,7 @@ public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerComman
 
         try
         {
-            var customer = _mapper.Map<Entities.Customer>(request);
+            var customer = _mapper.Map<Entities.Order>(request);
             await _unitOfWork.Repository.AddAsync(customer);
             await _unitOfWork.CompleteAsync();
 
