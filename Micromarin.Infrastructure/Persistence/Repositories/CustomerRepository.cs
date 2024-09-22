@@ -6,7 +6,7 @@ using Micromarin.Domain.Repositories;
 
 namespace Micromarin.Infrastructure.Persistence.Repositories;
 
-public class CustomerRepository : EntityFrameworkRepository<Order>, ICustomerRepository
+public class CustomerRepository : EntityFrameworkRepository<Customer>, ICustomerRepository
 {
     public CustomerRepository(MicromarinDbContext context) : base(context)
     {
