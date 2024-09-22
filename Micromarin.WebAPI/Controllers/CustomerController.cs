@@ -10,10 +10,13 @@ namespace Micromarin.WebAPI.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class CustomerController : BaseApiController
+public class CustomerController : ControllerBase
 {
-    public CustomerController(IMediator mediator, IErrorResponseFactory errorResponseFactory) : base(mediator, errorResponseFactory)
+    protected IMediator _mediator;
+
+    public CustomerController(IMediator mediator)
     {
+        _mediator = mediator;
     }
 
     [HttpPost]
