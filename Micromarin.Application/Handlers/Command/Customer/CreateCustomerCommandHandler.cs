@@ -3,7 +3,6 @@ using Micromarin.Application.Commands.Customers;
 using Micromarin.Domain.Interfaces;
 using AutoMapper;
 using Micromarin.Application.Interfaces.Repositories;
-using Micromarin.Domain.Models;
 
 
 namespace Micromarin.Application.Handlers.Command.Customer;

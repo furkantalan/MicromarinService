@@ -1,6 +1,9 @@
 ﻿using Autofac;
 using AutoMapper;
+using Castle.DynamicProxy;
+using FluentValidation;
 using MediatR;
+using Micromarin.Domain.AOP.Extensions;
 using Micromarin.Domain.Interfaces.General;
 using Micromarin.Domain.Mappings.Converter;
 using Microsoft.Extensions.Localization;
@@ -32,6 +35,35 @@ public class AutofacSharedModule : Module
         builder.RegisterType<ResourceManagerStringLocalizerFactory>()
             .As<IStringLocalizerFactory>()
             .SingleInstance();
+
+        //builder.Register(c =>
+        //{
+        //    var context = c.Resolve<IComponentContext>();
+        //    return new ProxyGenerationOptions
+        //    {
+        //        Selector = context.Resolve<IInterceptorSelector>()
+        //    };
+        //}).As<ProxyGenerationOptions>().SingleInstance();
+
+        //builder.RegisterAssemblyTypes(assemblies)
+        //    .AsClosedTypesOf(typeof(IRequestHandler<,>))
+        //    .AsImplementedInterfaces();
+
+        //builder.RegisterAssemblyTypes(assemblies)
+        //    .AsClosedTypesOf(typeof(IValidator<>))
+        //    .AsImplementedInterfaces();
+
+
+        //builder.RegisterAssemblyTypes(assemblies)
+        //        .AsImplementedInterfaces()
+        //        .EnableCustomInterceptors()
+        //        .InstancePerDependency();
+
+        //builder.Register(context => new MapperConfiguration(cfg =>
+        //{
+        //    cfg.CreateMap<string, ObjectId>().ConvertUsing<StringToObjectIdConverter>();
+        //    cfg.AddMaps(assemblies);
+        //}).CreateMapper()).As<IMapper>().InstancePerLifetimeScope();
 
     }
 }

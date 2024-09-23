@@ -24,5 +24,7 @@ public class AutofacApplicationModule : Module
             });
             return configuration.CreateMapper();
         }).As<IMapper>().InstancePerLifetimeScope();
+
+
     }
 }
