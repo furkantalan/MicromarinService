@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Micromarin.Application.Commands.Products;
+using Micromarin.Application.DTOs.CreateDtos;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -18,13 +19,14 @@ public class ProductController : ControllerBase
     }
 
 
-    //[HttpPost]
-    //[Route("CreateProduct")]
-    //public async Task<IActionResult> Create([FromBody] CreateProductCommand.Request request)
-    //{
-    //    var response = await _mediator.Send(request);
-    //    return Ok(response);
-    //}
+    [HttpPost]
+    [Route("CreateProduct")]
+    public async Task<IActionResult> Create([FromBody] CreateProductDto request)
+    {
+        var command = new CreateProductCommand { CreateProductDto = request };
+        var response = await _mediator.Send(command);
+        return Ok(response);
+    }
 
 
 }

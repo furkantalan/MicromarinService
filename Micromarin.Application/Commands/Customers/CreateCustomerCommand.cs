@@ -1,15 +1,9 @@
 ﻿using MediatR;
+using Micromarin.Application.DTOs.CreateDtos;
 
 namespace Micromarin.Application.Commands.Customers;
 
-public class CreateCustomerCommand
+public class CreateCustomerCommand : IRequest<bool>
 {
-    public sealed record Request(
-        string FirstName,
-        string LastName,
-        string Email,
-        string Phone,
-        string Address
-        ) : IRequest<Response>;
-    public sealed record Response(bool result);
+    public CreateCustomerDto CreateCustomerDto { get; set; }
 }

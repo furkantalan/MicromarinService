@@ -1,11 +1,12 @@
 ﻿
 using FluentValidation;
 using Micromarin.Application.Commands.Customers;
+using Micromarin.Application.DTOs.CreateDtos;
 
 
 namespace Micromarin.Application.Handlers.Validation.Customer;
 
-public class CreateCustomerCommandValidator : AbstractValidator<CreateCustomerCommand.Request>
+public class CreateCustomerCommandValidator : AbstractValidator<CreateCustomerDto>
 {
     public CreateCustomerCommandValidator()
     {

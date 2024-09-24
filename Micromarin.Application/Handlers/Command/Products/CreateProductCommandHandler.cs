@@ -7,7 +7,7 @@ using Micromarin.Domain.Interfaces;
 
 namespace Micromarin.Application.Handlers.Command.Products;
 
-public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand.Request, CreateProductCommand.Response>
+public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, bool>
 {
     private readonly IUnitOfWork<IProductRepository> _unitOfWork;
     private readonly IMapper _mapper;
@@ -18,24 +18,12 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand.
         _mapper = mapper;
     }
 
-    public async Task<CreateProductCommand.Response> Handle(CreateProductCommand.Request request, CancellationToken cancellationToken)
+    public async Task<bool> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
-        var result = new CreateProductCommand.Response(false);
+        var product = _mapper.Map<Entities.Product>(request.CreateProductDto);
+        await _unitOfWork.Repository.AddAsync(product);
+        await _unitOfWork.CompleteAsync();
 
-        try
-        {
-            var product = _mapper.Map<Entities.Product>(request);
-            await _unitOfWork.Repository.AddAsync(product);
-            await _unitOfWork.CompleteAsync();
-
-            result = new CreateProductCommand.Response(true);
-        }
-        catch (Exception ex)
-        {
-            // Log the exception (optional)
-            result = new CreateProductCommand.Response(false);
-        }
-
-        return result;
+        return true;
     }
 }

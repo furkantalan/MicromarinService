@@ -7,7 +7,7 @@ using Micromarin.Application.Interfaces.Repositories;
 
 namespace Micromarin.Application.Handlers.Command.Customer;
 
-public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand.Request, CreateCustomerCommand.Response>
+public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, bool>
 {
     private readonly IUnitOfWork<ICustomerRepository> _unitOfWork;
     private readonly IMapper _mapper;
@@ -18,22 +18,12 @@ public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerComman
         _mapper = mapper;
     }
 
-    public async Task<CreateCustomerCommand.Response> Handle(CreateCustomerCommand.Request request, CancellationToken cancellationToken)
+    public async Task<bool> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
     {
-        var result = new CreateCustomerCommand.Response(false);
+        var customer = _mapper.Map<Entities.Customer>(request.CreateCustomerDto);
+        await _unitOfWork.Repository.AddAsync(customer);
+        await _unitOfWork.CompleteAsync();
 
-        try
-        {
-            var customer = _mapper.Map<Entities.Customer>(request);
-            await _unitOfWork.Repository.AddAsync(customer);
-            await _unitOfWork.CompleteAsync();
-
-            result = new CreateCustomerCommand.Response(true);
-        }
-        catch (Exception ex)
-        {
-            result = new CreateCustomerCommand.Response(false);
-        }
-        return result;
+        return true;
     }
 }

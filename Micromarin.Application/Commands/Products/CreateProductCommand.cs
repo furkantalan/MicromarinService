@@ -1,16 +1,11 @@
 ﻿
 using MediatR;
+using Micromarin.Application.DTOs.CreateDtos;
 
 namespace Micromarin.Application.Commands.Products;
 
-public class CreateProductCommand
+public class CreateProductCommand : IRequest<bool>
 {
-    public sealed record Request(
-        string Name,
-        string Description,
-        decimal Price,
-        int StockQuantity
-        ) : IRequest<Response>;
-    public sealed record Response(bool result);
+    public CreateProductDto CreateProductDto { get; set; }
 
 }
