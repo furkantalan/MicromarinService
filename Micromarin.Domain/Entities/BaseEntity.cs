@@ -13,5 +13,6 @@ public abstract class BaseEntity : IBaseEntity
     protected BaseEntity()
     {
         Id = Guid.NewGuid();
+        Status = true;
     }
 }

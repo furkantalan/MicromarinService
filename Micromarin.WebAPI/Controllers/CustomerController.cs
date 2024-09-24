@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Micromarin.Application.Commands.Customers;
+using Micromarin.Application.DTOs.CreateDtos;
 using Micromarin.Application.DTOs.UpdateDtos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,9 +21,10 @@ public class CustomerController : ControllerBase
 
     [HttpPost]
     [Route("CreateCustomer")]
-    public async Task<IActionResult> Create([FromBody] CreateCustomerCommand.Request request)
+    public async Task<IActionResult> Create([FromBody] CreateCustomerDto request)
     {
-        var response = await _mediator.Send(request);
+        var command = new CreateCustomerCommand { CreateCustomerDto = request };
+        var response = await _mediator.Send(command);
         return Ok(response);
     }
 
