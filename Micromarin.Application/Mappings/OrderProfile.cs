@@ -11,14 +11,13 @@ public class OrderProfile : Profile
 {
     public OrderProfile()
     {
-        // UpdateOrderDto ile Order arasındaki eşleştirme
         CreateMap<UpdateOrderDto, Order>()
-            .ForMember(dest => dest.Products, opt => opt.Ignore()); // Products manuel olarak güncellenecek
+            .ForMember(dest => dest.Products, opt => opt.Ignore());
 
-        // ProductDto ile Product arasındaki eşleştirme
         CreateMap<ProductDto, Product>();
 
         CreateMap<Order, GetOrderDto>();
+        CreateMap<GetOrderDto, Order>();
 
 
     }

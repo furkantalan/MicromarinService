@@ -9,5 +9,5 @@ public class CreateOrderDto
     public Guid CustomerId { get; set; }
     public List<ProductDto> Products { get; set; }
     public decimal TotalAmount { get; set; }
-    public OrderStatus Status { get; set; }
+    public OrderStatus OrderStatus { get; set; }
 }
