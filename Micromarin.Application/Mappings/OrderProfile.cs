@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Micromarin.Application.DTOs.GetDtos;
 using Micromarin.Application.DTOs.Products;
 using Micromarin.Application.DTOs.UpdateDtos;
 using Micromarin.Application.Entities;
@@ -16,6 +17,9 @@ public class OrderProfile : Profile
 
         // ProductDto ile Product arasındaki eşleştirme
         CreateMap<ProductDto, Product>();
+
+        CreateMap<Order, GetOrderDto>();
+
 
     }
 }
