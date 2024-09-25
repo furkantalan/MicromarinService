@@ -2,7 +2,7 @@
 
 using MediatR;
 
-namespace Micromarin.Application.Commands.Order;
+namespace Micromarin.Application.Commands.Orders;
 
 public class RemoveOrderCommand : IRequest<bool>
 {

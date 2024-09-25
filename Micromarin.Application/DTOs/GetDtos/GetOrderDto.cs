@@ -3,6 +3,6 @@
 
 namespace Micromarin.Application.DTOs.GetDtos;
 
-internal class GetOrderDto
+public class GetOrderDto
 {
 }

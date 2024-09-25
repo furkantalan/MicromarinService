@@ -1,14 +1,13 @@
 ﻿
-
+using Micromarin.Application.DTOs.Products;
 using Micromarin.Application.Enums;
-using Micromarin.Domain.Entities;
 
-namespace Micromarin.Application.Entities;
+namespace Micromarin.Application.DTOs.CreateDtos;
 
-public class Order : BaseEntity
+public class CreateOrderDto
 {
     public Guid CustomerId { get; set; }
-    public List<Product>? Products { get; set; }
+    public List<ProductDto> Products { get; set; }
     public decimal TotalAmount { get; set; }
     public OrderStatus Status { get; set; }
 }
